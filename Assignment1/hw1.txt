@@ -1,0 +1,99 @@
+1. Testing the program on the first 10 Padovan Numbers works as expected, 
+however as PAD grew larger, the program began running significanly slower.
+This is due to the fact that as the number grows larger the more calls 
+are made to PAD, so more calls to PAD are added to the stack before arriving
+at the final solution. By (PAD 50) the output took significantly longer to 
+compute.
+
+Output:
+[9]> (PAD 1)
+1
+[10]> (PAD 2)
+1
+[11]> (PAD 3)
+2
+[12]> (PAD 4)
+2
+[13]> (PAD 5)
+3
+[14]> (PAD 6)
+4
+[15]> (PAD 7)
+5
+[16]> (PAD 8)
+7
+[17]> (PAD 9)
+9
+[18]> (PAD 10)
+12
+[19]> (PAD 20)
+200
+[20]> (PAD 30)
+3329
+[21]> (PAD 40)
+55405
+[22]> (PAD 50)
+922111
+
+2. The amount of times you add compared to the output of the PAD function
+is one less than the output of PAD. This is due to the fact that if you 
+think of the recursion as a tree, and look only at the leaf nodes,
+it would look something like this:
+
+	    (PAD 6) 
+	   /       \
+   (PAD 4)     (PAD 3)
+   /     \     /     \   
+  1   +   1 + 1   +   1
+
+ What PAD really does is add a bunch of 1's. And to add them, there must be
+ addition between each 1, which means that there is one less addition than
+ the amount of 1's, which is PAD - 1
+
+Output:
+[24]> (SUMS 0)
+0
+[25]> (SUMS 1)
+0
+[26]> (SUMS 2)
+0
+[27]> (SUMS 3)
+1
+[28]> (SUMS 4)
+1
+[29]> (SUMS 5)
+2
+[30]> (SUMS 6)
+3
+[31]> (SUMS 7)
+4
+[32]> (SUMS 8)
+6
+[33]> (SUMS 9)
+8
+[34]> (SUMS 10)
+11
+[35]> (SUMS 20)
+199
+[36]> (SUMS 30)
+3328
+[37]> (SUMS 40)
+55404
+
+3.
+
+Output:
+[49]> (ANON '42)
+?
+[50]> (ANON 'FOO)
+?
+[51]> (ANON '(((L E) F) T))
+(((? ?) ?) ?)
+[52]> (ANON '(5 FOO 3.1 -0.2))
+(? ? ? ?)
+[53]> (ANON '(1 (FOO 3.1) -0.2))
+(? (? ?) ?)
+[54]> (ANON '(((1 2) (FOO 3.1)) (BAR -0.2)))
+(((? ?) (? ?)) (? ?))
+[55]> (ANON '(R (I (G (H T)))))
+(? (? (? (? ?))))

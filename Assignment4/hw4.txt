@@ -1,0 +1,21 @@
+While unsatisfiable with 3 colors, graph1.txt can be satisfied with 4 colors.
+This means that it is necessary to have at least 4 colors to make the problem
+solvable (any more than 4 will only make it easier since there are more
+color options for each node)
+
+The given RSat solution requires that these nodes hold the same color:
+
+Nodes 1, 3
+Nodes 2, 4
+Nodes 5, 7
+Node  6
+
+Given this, a possible solution is to assign red, blue, green, yellow
+to these groups of colors respectively.
+
+The number of nodes in graph2.txt is much larger than graph1.txt, so I 
+expected the minimum number of colors to be greater. Starting at the 
+arbitrarily high number 14, I found that it was satisfiable. Thus, 
+I kept going down to restrict the number of colors and found that it was 
+unsatisfiable at 7 colors. Therefore the minimun numberf of colors for 
+graph2.txt is 8 colors.

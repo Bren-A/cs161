@@ -1,0 +1,163 @@
+1.
+    a.  S | F | S ==> F | -S ==> -F | (S ==> F) ==> (-S ==> -F)
+       ---------------------------------------------------------
+        T | T |    T    |     T     |             T      
+        T | F |    F    |     T     |             T      
+        F | T |    T    |     F     |             F      
+        F | F |    T    |     T     |             T    
+
+    There is one False result when Smoke == False and Fire == True,
+    therefore neither  
+
+    b.  S | F | H | S ==> F | (S | H) ==> F | (S ==> F) ==> ((S | H) ==> F)
+       ---------------------------------------------------------------------
+        T | T | T |    T    |       T       |               T
+        T | T | F |    T    |       T       |               T
+        T | F | T |    F    |       F       |               T
+        T | F | F |    F    |       F       |               T
+        F | T | T |    T    |       T       |               T
+        F | T | F |    T    |       T       |               T
+        F | F | T |    T    |       F       |               F
+        F | F | F |    T    |       T       |               T
+
+    There is one False when Smoke = False, Fire = False, and Heat = True,
+    therefore neither
+
+    b.  S | F | H | (S & H) ==> F | (S ==> F) | (H ==> F) | (S & H) ==> F <=> ((S => F) | (H => F))
+       -----------------------------------------------------------------------------------------------
+        T | T | T |       T       |           T           |                    T
+        T | T | F |       T       |           T           |                    T
+        T | F | T |       F       |           F           |                    T
+        T | F | F |       T       |           T           |                    T
+        F | T | T |       T       |           T           |                    T
+        F | T | F |       T       |           T           |                    T
+        F | F | T |       T       |           T           |                    T
+        F | F | F |       T       |           T           |                    T
+
+    All combinations are true, 
+    therefore valid
+2.
+    U = Unicorn is mythical
+    I = Unicorn is immortal
+    H = Unicorn is horned
+    M = Unicorn is mammal
+    S = Unicorn is magical
+
+    a.
+        If the unicorn is mythical, then it is immortal,
+        but if it is not mythical, then it is a mortal mammal:
+
+        (U => I) & (-U => -I & M).
+
+        If the unicorn is either immortal or a mammal, then it is horned
+
+        (I | -I) => H.
+
+        The unicorn is magical if it is horned.
+
+        H => S.
+
+    b.
+        1. ((U => I) & (-U => -I & M)) 
+            = ((-U | I) & (U | (-I & M))
+            = ((-U | I) & (U | -I) & (U | M))
+        2. ((I | M) => H) 
+            = (-(I | M) | H) 
+            = ((-I & -M) | H) 
+            = (-I | H) & (-M | H) 
+
+        3. (H => S) 
+            = (-H | S)
+
+    c.
+    Use proof by contradiction. Assume -U,  -S, -H accordingly.
+
+    Mythical? Can't tell
+        -U and 1 gives -I and M
+        M and 2 gets H
+        H and 3 gets S
+        -I and 1 gets -U
+
+        Stuck on where to go after, can't tell
+
+    Magical? Yes
+        -S and 3 is -H
+        Using -H and 2, we can get -I and -M
+        Using -I and 1, we get -U
+        Using -M and 1, we get U
+
+        Contradiction therefore Magical
+
+
+    Horned? Yes
+        Using -H and 2, we can get -I and -M
+        Using -I and 1, we get -U
+        Using -M and 1, we get U
+        
+        Contradicts therefore Horned
+
+3.
+    a. {x/A, y/B, z/B}
+
+    b. Q(y, G(A,B)) ; Q(G(x,x), y)
+       Q(G(x,x), G(A, B)) ; Q(G(x, x), G(x, x)) {y/G(x,x)}
+       Q(G(A,A), G(A, B)) ; Q(G(A,A), G(A,A)) {y/G(x,x), x/A}
+
+       General Unifier does not exist. Replacing x with A leaves no way to
+       substitute in B
+
+    c. {x/John, y/John}
+
+    d. Does not exist. Must replace x with both y and Father(y)
+
+4.
+    a. Ax(Food(x) => Likes(John,x))
+       Food(Apples)
+       Food(Chicken)
+       Ax(Ay(Eats(x,y) & -Killedby(y,x) => Food(y)))
+       Ax(Ay(Killedby(x,y) => -Alive(x)))
+       *Eats(Bill, Peanuts) & Alive(Bill)
+       Ax(Eats(Bill,x) => Eats(Sue,x))
+
+    b. 1. -Food(x) & Likes(John,x)
+       2. Food(Apples)
+       3. Food(Chicken)
+       4. -Eats(x,y) | Killedby(y,x) | Food(y)
+       5. -Killedby(x,y) | -Alive(x)
+       6. Eats(Bill,Peanuts) 
+       7. Alive(Bill)
+       8. -Eats(Bill,x) | Eats(Sue,x)
+
+    c. Assume John doesn't like peanuts:
+           9. -Likes(John,Peanuts)
+           10. -Food(Peanuts)           Using 1,9
+           11. Eats(Bill, Peanuts)      Using 6
+           12. Alive(Bill)              Using 7
+           13. -Killedby(Bill, Peanuts) Using 5, 12
+           14. Food(Peanuts)            Using 4
+
+           Contradiction 10 and 14. John Likes Peanuts
+
+    d. General Unifier of 6 and 8 = {x/Peanuts}
+       Sue Eats peanuts
+
+    e. New set:
+           1. -Food(x) & Likes(John,x)
+           2. Food(Apples)
+           3. Food(Chicken)
+           4. -Eats(x,y) | Killedby(y,x) | Food(y)
+           5. -Killedby(x,y) | -Alive(x)
+           6. Eats(x,y) | Dies(x)
+           7. -Dies(x) | -Alive(x)
+           8. Alive(Bill)
+           9. -Eats(Bill,x) | Eats(Sue,x)
+
+       Given new axioms:
+           12. -Dies(Bill)              Using 7, 8
+           13. Eats(Bill, y)            Using 6, 12
+           14. Eats(Sue, x)             Using 9, 13
+
+       Cannot derive further. Sally eats what Bill does, but cannot specify what
+
+
+

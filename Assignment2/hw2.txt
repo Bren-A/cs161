@@ -1,0 +1,31 @@
+Question 1 output:
+
+	Break 22 [23]> (bfs '(root))
+	(ROOT)
+	Break 22 [23]> (BFS '((((L E) F) T)))
+	(T F L E)
+	Break 22 [23]> (BFS '((R (I (G (H T))))))
+	(R I G H T)
+	Break 22 [23]> (BFS '(((A (B)) C (D))))
+	(C A D B)
+	Break 22 [23]> (BFS '((T (H R E) E)))
+	(T E H R E)
+	Break 22 [23]> (BFS '((A ((C ((E) D)) B))))
+	(A B C D E)
+	Break 26 [27]> (bfs 'a)
+	A
+
+Question 2 output:
+
+	Break 11 [18]> (DFS '(NIL NIL NIL NIL)  NIL)
+	((NIL NIL NIL NIL) (T T NIL NIL) (NIL T NIL NIL) (T T T NIL) (NIL NIL T NIL) (T NIL T T) (NIL NIL T T) (T T T T))
+	Break 11 [18]> (DFS '(NIL NIL NIL T)  NIL)
+	((NIL NIL NIL T) (T T NIL T) (NIL T NIL NIL) (T T T NIL) (NIL NIL T NIL) (T NIL T T) (NIL NIL T T) (T T T T))
+	Break 11 [18]> (DFS '(NIL NIL T T)  NIL)
+	((NIL NIL T T) (T T T T))
+	Break 11 [18]> (DFS '(T T NIL T)  NIL)
+	((T T NIL T) (NIL NIL NIL T) (T NIL T T) (NIL NIL T T) (T T T T))
+	Break 11 [18]> (DFS '(T NIL T T)  NIL)
+	((T NIL T T) (NIL NIL T T) (T T T T))
+	Break 11 [18]> (DFS '(T NIL NIL T)  NIL)
+	((T NIL NIL T) (NIL NIL NIL NIL) (T T NIL NIL) (NIL T NIL NIL) (T T T NIL) (NIL NIL T NIL) (T NIL T T) (NIL NIL T T) (T T T T))
